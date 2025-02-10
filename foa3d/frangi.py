@@ -406,23 +406,23 @@ def init_frangi_arrays(in_img, cfg, tmp_dir):
     cfg.update({'rsz': rsz_ratio})
 
     # fiber channel arrays
-    iso_fbr = create_memory_map(tot_shp, dtype='uint8', name='iso', tmp=tmp_dir)
+    iso_fbr = create_memory_map('uint8', shape=tot_shp, name='iso', tmp=tmp_dir)
     if cfg['exp_all']:
-        frangi = create_memory_map(tot_shp, dtype='uint8', name='frangi', tmp=tmp_dir)
-        fbr_msk = create_memory_map(tot_shp, dtype='uint8', name='fbr_msk', tmp=tmp_dir)
-        fa = create_memory_map(tot_shp, dtype='float32', name='fa', tmp=tmp_dir)
+        frangi = create_memory_map('uint8', shape=tot_shp, name='frangi', tmp=tmp_dir)
+        fbr_msk = create_memory_map('uint8', shape=tot_shp, name='fbr_msk', tmp=tmp_dir)
+        fa = create_memory_map('float32', shape=tot_shp, name='fa', tmp=tmp_dir)
 
         # soma channel array
         if in_img['msk_bc']:
-            bc_msk = create_memory_map(tot_shp, dtype='uint8', name='bc_msk', tmp=tmp_dir)
+            bc_msk = create_memory_map('uint8', shape=tot_shp, name='bc_msk', tmp=tmp_dir)
         else:
             bc_msk = None
     else:
         frangi, fbr_msk, fa, bc_msk = 4 * (None,)
 
     # fiber orientation arrays
-    fbr_vec = create_memory_map(vec_shp, dtype='float32', name='vec', tmp=tmp_dir)
-    fbr_clr = create_memory_map(vec_shp, dtype='uint8', name='clr', tmp=tmp_dir)
+    fbr_vec = create_memory_map('float32', shape=vec_shp, name='vec', tmp=tmp_dir)
+    fbr_clr = create_memory_map('uint8', shape=vec_shp, name='clr', tmp=tmp_dir)
 
     # fill output image dictionary
     out_img = {'vec': fbr_vec, 'clr': fbr_clr, 'fa': fa, 'frangi': frangi,

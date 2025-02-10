@@ -1,8 +1,9 @@
 # Foa3D
 
 **Foa3D** (3D Fiber Orientation Analysis) is a Python tool for multiscale nerve
-fiber enhancement and 3D orientation analysis in large high-resolution image
-volumes acquired by two-photon scanning or light-sheet fluorescence microscopy.
+fiber enhancement and 3D orientation analysis in large high-resolution volumetric
+brain tissue reconstructions acquired by two-photon scanning
+or light-sheet fluorescence microscopy.
 
 ## Key features
 

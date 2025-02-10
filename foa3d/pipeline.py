@@ -20,7 +20,7 @@ from foa3d.utils import get_available_cores
 
 def parallel_frangi_over_slices(cli_args, save_dirs, in_img):
     """
-    Apply 3D Frangi filtering to basic TPFM image slices using parallel threads.
+    Apply 3D Frangi filter to basic microscopy image slices using parallel threads.
 
     Parameters
     ----------
@@ -146,7 +146,8 @@ def parallel_frangi_over_slices(cli_args, save_dirs, in_img):
 
 def frangi_analysis(rng, in_img, out_img, cfg, t_start, _fa=False):
     """
-    Conduct a Frangi-based fiber orientation analysis on basic slices selected from the whole microscopy volume image.
+    Conduct a Frangi-based fiber orientation analysis
+    on basic slices selected from the whole volumetric microscopy image.
 
     Parameters
     ----------

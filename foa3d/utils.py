@@ -81,17 +81,17 @@ def create_background_mask(img, method='yen', black_bg=False):
     return bg_msk
 
 
-def create_memory_map(shape, dtype, name='tmp', tmp=None, arr=None, mmap_mode='w+'):
+def create_memory_map(dtype, shape=None, name='tmp', tmp=None, arr=None, mmap_mode='w+'):
     """
     Create a memory-map to an array stored in a binary file on disk.
 
     Parameters
-    ----------
-    shape: tuple
-        shape of the stored array
-
+    ----------    
     dtype:
         data-type used to interpret the file contents
+
+    shape: tuple
+        shape of the stored array
 
     name: str
         optional temporary filename

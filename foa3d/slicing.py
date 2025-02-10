@@ -147,7 +147,7 @@ def compute_axis_range(ax, ax_iter, slc_shp, img_shp, slc_per_dim, ovlp=0, flip=
 
 def compute_slice_range(ax_iter, slc_shp, img_shp, slc_per_dim, ovlp=0, flip=False):
     """
-    Compute basic slice coordinates from microscopy volume image.
+    Compute basic slice coordinates from microscopy volumetric image.
 
     Parameters
     ----------
@@ -625,7 +625,7 @@ def get_slicing_config(in_img, frangi_cfg, mem_growth=149.7, shp_thr=7):
 
 def slice_image(img, rng, ch_ax, ch, ts_msk=None):
     """
-    Slice desired channel from input image volume.
+    Slice desired channel from input volumetric image.
 
     Parameters
     ----------

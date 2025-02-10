@@ -41,15 +41,15 @@ Usage
 
 Microscopy image formats
 ------------------------
-Foa3D accepts 3D grayscale or RGB image stacks in TIFF format.
+Foa3D supports 3D grayscale or RGB image stacks in TIFF format.
 Alternatively, a YAML stitch file created by the ZetaStitcher tool for large volumetric stack alignment
-and stitching [`ZetaStitcher GitHub <https://github.com/lens-biophotonics/ZetaStitcher>`_] can be used as input.
+and stitching [`ZetaStitcher GitHub <https://github.com/lens-biophotonics/ZetaStitcher>`_] can be provided as input.
 To generate this stitch file from a collection of adjacent 3D stacks composing a tiled reconstruction of brain tissue,
 refer to the documentation at [`ZetaStitcher GitHub <https://github.com/lens-biophotonics/ZetaStitcher>`_].
 In particular, the Foa3D tool uses the 3D stack alignment information contained in such a file to programmatically
 access and process basic image sub-volumes of appropriate size, allowing for the analysis of high-resolution mesoscopic
 microscopy images that exceed the typical memory available on low-resource machines.
-The YAML and image stack files must be in the same directory.
+The YAML and image stack files must be located in the same directory.
 
 .. code-block:: console
 
@@ -67,7 +67,7 @@ along with the 3D full width at half maximum of the point spread function of the
    $ ... --px-size-xy 0.4 --px-size-z 1 --psf-fwhm-x 1.5 --psf-fwhm-y 1.4 --psf-fwhm-z 3.1
 
 This information is required at the preprocessing stage of the pipeline to properly isotropize the spatial resolution
-of the raw microscopy images. In detail, since two-photon scanning and light-sheet fluorescence microscopes are in
+of the raw microscopy images. In fact, since two-photon scanning and light-sheet fluorescence microscopes are in
 general characterized by a poorer resolution along the direction of the optical axis, the XY-plane of the sliced
 image sub-volumes typically needs to be blurred. A tailored Gaussian smoothing kernel is used in this regard.
 If not properly corrected, the residual anisotropy would otherwise introduce a systematic bias in the assessed
@@ -77,7 +77,7 @@ If not properly corrected, the residual anisotropy would otherwise introduce a s
 
 Frangi filter configuration
 ---------------------------
-Fiber enhancement and masking is achieved via a multiscale 3D Frangi filter [`Frangi, et al., 1998 <https://doi.org/10.1007/BFb0056195>`_].
+Fiber enhancement and segmentation is achieved via a multiscale 3D Frangi filter [`Frangi, et al., 1998 <https://doi.org/10.1007/BFb0056195>`_].
 The spatial scales of the filter (in μm) can be provided via the ``-s/--scales`` option.
 As discussed in [`Sorelli, et al., 2023 <https://doi.org/10.1038/s41598-023-30953-w>`_],
 the optimal scales that best preserve the original intensity
@@ -102,15 +102,15 @@ cross-sectional diameter of 5 and 10 μm, with an automatic (local) contrast sen
    $ ... -a 0.00001 -b 0.1 -s 1.25 2.5
 
 Please keep in mind that the above automatic local adjustment of the γ sensitivity may produce discontinuities
-between the fiber orientation vector fields resulting from adjacent image slices.
+between the fiber orientation vector fields resulting from adjacent image slices handled by separate CPU cores.
 
 .. _parallelization:
 
 Parallelization
 ---------------
-In order to speed up the fiber orientation analysis on large brain tissue sections, the Foa3D pipeline divides the input 
+In order to speed up the fiber orientation analysis on large brain tissue sections, the Foa3D tool divides the input 
 image reconstruction into basic slices of appropriate shape and assigns them to separate concurrent workers.
-By default, Foa3D will use all available logical cores—for instance, a batch of 32 image slices will be simultaneously
+By default, Foa3D will use all available logical cores: for instance, a batch of 32 image slices will be simultaneously
 processed on a 32-core CPU. The multiscale Frangi filter, on the other hand, is not currently parallelized in order to
 avoid unnecessary overhead and resource oversubscription within the nested parallel loop. The size of the basic image
 slices is automatically determined by the available RAM. The ``--job`` and ``--ram`` options can be specified
@@ -159,7 +159,7 @@ the ``-o/--odf-res`` option:
    $ ... --odf-res 25 50 100 200
 
 Foa3D also provides the possibility to directly execute the multiscale analysis of fiber ODFs,
-skipping the Frangi filter stage, on pre-computed fiber orientation vector fields (NumPy or TIFF format):
+skipping the Frangi filter stage, on pre-computed 3D fiber orientation vector fields (TIFF format):
 
 .. code-block:: console
 
@@ -172,7 +172,7 @@ for medical image processing and visualization
 Output description
 ------------------
 The Frangi filter and ODF generation stages of the Foa3D tool export the series of TIFF and NIfTI images listed below.
-Images exported by default are reported in bold; the remaining ones can be exported as well, e.g. for testing purposes,
+Images exported by default are reported in bold; the remaining ones can be produced as well, e.g. for testing purposes,
 by selecting the "export all" option (-e or --exp-all) via CLI.
 
 #. Frangi filter stage:

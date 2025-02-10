@@ -220,7 +220,7 @@ def get_image_info(cli_args):
 
     # check image format
     if len(split_name) == 1:
-        raise ValueError('Format must be specified for input volume images!')
+        raise ValueError('Format must be specified for input microscopy images!')
     img_fmt = split_name[-1]
     img_name = img_name.replace(f'.{img_fmt}', '')
     is_tiled = True if img_fmt == 'yml' else False
@@ -614,8 +614,8 @@ def load_data(in_img, tmp_dir, msk_mip=False):
                 if ch_ax != 3:
                     img = np.moveaxis(img, ch_ax, -1)
 
-            img = create_memory_map(img.shape, dtype=img.dtype, name=in_img['name'],
-                                    tmp=tmp_dir, arr=img, mmap_mode='r')
+            img = create_memory_map(img.dtype, name=in_img['name'], tmp=tmp_dir, arr=img, mmap_mode='r')
+
         else:
             raise ValueError('Unsupported image format!')
 
