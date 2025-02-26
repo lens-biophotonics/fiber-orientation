@@ -142,9 +142,9 @@ def compute_orientation_dispersion(vec_tnsr_eig, odi_pri, odi_sec, odi_tot, odi_
         odi_sec[:] = (0.5 - 0.3183098861837907 * np.arctan2(avte[..., 2], avte[..., 0])).astype(np.float32)
 
     # dispersion anisotropy
-    diff = np.abs(vec_tnsr_eig[..., 1] - vec_tnsr_eig[..., 0])
     if odi_anis is not None:
-        odi_anis[:] = (0.5 - 0.3183098861837907 * np.arctan2(avte[..., 2], diff)).astype(np.float32)
+        odi_anis[:] = (0.5 - 0.3183098861837907 \
+            * np.arctan2(avte[..., 2], np.abs(vec_tnsr_eig[..., 1] - vec_tnsr_eig[..., 0]))).astype(np.float32)
 
     # total dispersion
     odi_tot[:] = (0.5 - 0.3183098861837907 *

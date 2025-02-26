@@ -1,0 +1,63 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "type": "SoftwareSourceCode",
+    "applicationCategory": "3D Microscopy",
+    "author": [
+        {
+            "id": "https://orcid.org/0000-0002-0546-3157",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "European Laboratory for Non-Linear Spectroscopy (LENS), Sesto Fiorentino, Italy; Department of Information Engineering, University of Florence, Florence, Italy"
+            },
+            "email": "sorelli@lens.unifi.it",
+            "familyName": "Sorelli",
+            "givenName": "Michele"
+        }
+    ],
+    "codeRepository": "git+https://github.com/lens-biophotonics/Foa3D.git",
+    "contributor": [
+        {
+            "id": "https://orcid.org/0000-0002-0546-3157",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "European Laboratory for Non-Linear Spectroscopy (LENS), Sesto Fiorentino, Italy; Department of Information Engineering, University of Florence, Florence, Italy"
+            },
+            "email": "sorelli@lens.unifi.it",
+            "familyName": "Sorelli",
+            "givenName": "Michele"
+        },
+        {
+            "id": "https://orcid.org/0000-0003-3077-3904",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "European Laboratory for Non-Linear Spectroscopy (LENS), Sesto Fiorentino, Italy; National Research Council – National Institute of Optics (CNR-INO), Sesto Fiorentino, Italy; dDepartment of Physics and Astronomy, University of Florence, Sesto Fiorentino, Italy"
+            },
+            "email": "mazzamuto@lens.unifi.it",
+            "familyName": "Mazzamuto",
+            "givenName": "Giacomo"
+        }
+    ],
+    "dateModified": "2025-02-10",
+    "description": "Foa3D (3D Fiber Orientation Analysis) is a Python tool for multiscale nerve fiber enhancement and 3D orientation analysis in large high-resolution volumetric images acquired by two-photon scanning or light-sheet fluorescence microscopy.",
+    "downloadUrl": "https://github.com/lens-biophotonics/Foa3D/archive/refs/heads/main.zip",
+    "identifier": "34f53a74-50f0-49df-a437-043a4dbc5c5b",
+    "keywords": [
+        "3D fluorescence microscopy",
+        "connectomics",
+        "myeloarchitectonics"
+    ],
+    "name": "Foa3D",
+    "operatingSystem": [
+        "Linux",
+        "Windows"
+    ],
+    "programmingLanguage": "Python 3",
+    "schema:releaseNotes": "Initial release.",
+    "runtimePlatform": "CPython",
+    "softwareRequirements": "Python ≥ 3.8",
+    "version": "0.1.0",
+    "referencePublication": "https://doi.org/10.1038/s41598-023-30953-w"
+}
