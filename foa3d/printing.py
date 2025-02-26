@@ -276,8 +276,8 @@ def print_image_info(in_img):
 
     print_flsh("\n                              Z      Y      X\nImage shape          [μm]: " +
                f"({img_shp[0] * px_sz[0]:.1f}, {img_shp[1] * px_sz[1]:.1f}, {img_shp[2] * px_sz[2]:.1f})\n" +
-               f"Pixel size           [μm]: ({px_sz[0]:.3f}, {px_sz[1]:.3f}, {px_sz[2]:.3f})\n" +
-               f"PSF FWHM             [μm]: ({psf_fwhm[0]:.3f}, {psf_fwhm[1]:.3f}, {psf_fwhm[2]:.3f})")
+               f"PSF FWHM             [μm]: ({psf_fwhm[0]:.3f}, {psf_fwhm[1]:.3f}, {psf_fwhm[2]:.3f})\n" +
+               f"Pixel size           [μm]: ({px_sz[0]:.3f}, {px_sz[1]:.3f}, {px_sz[2]:.3f})\n")
 
 
 def print_import_time(start_time):
