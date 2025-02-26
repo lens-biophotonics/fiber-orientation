@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>foa3d.spharm &mdash; Foa3D 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="https://docs.python.org/3/_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="foa3d.utils" href="utils.html" />
+    <link rel="prev" title="foa3d.slicing" href="slicing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Foa3D
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html#usage">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Python module index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="frangi.html">foa3d.frangi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">foa3d.input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="odf.html">foa3d.odf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">foa3d.output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html">foa3d.pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">foa3d.preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="printing.html">foa3d.printing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slicing.html">foa3d.slicing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">foa3d.spharm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.spharm.compute_fiber_angles"><code class="docutils literal notranslate"><span class="pre">compute_fiber_angles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.spharm.compute_real_sph_harm"><code class="docutils literal notranslate"><span class="pre">compute_real_sph_harm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.spharm.factorial"><code class="docutils literal notranslate"><span class="pre">factorial()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.spharm.fiber_angles_to_sph_harm"><code class="docutils literal notranslate"><span class="pre">fiber_angles_to_sph_harm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.spharm.fiber_vectors_to_sph_harm"><code class="docutils literal notranslate"><span class="pre">fiber_vectors_to_sph_harm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.spharm.get_sph_harm_ncoeff"><code class="docutils literal notranslate"><span class="pre">get_sph_harm_ncoeff()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.spharm.get_sph_harm_norm_factors"><code class="docutils literal notranslate"><span class="pre">get_sph_harm_norm_factors()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.spharm.norm_factor"><code class="docutils literal notranslate"><span class="pre">norm_factor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">foa3d.utils</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Foa3D</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">Python module index</a> &raquo;</li>
+      <li>foa3d.spharm</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/spharm.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-foa3d.spharm">
+<span id="foa3d-spharm"></span><h1>foa3d.spharm<a class="headerlink" href="#module-foa3d.spharm" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.spharm.compute_fiber_angles">
+<span class="sig-prename descclassname"><span class="pre">foa3d.spharm.</span></span><span class="sig-name descname"><span class="pre">compute_fiber_angles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fbr_vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.spharm.compute_fiber_angles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the spherical coordinates (φ azimuth and θ polar angles)
+of the fiber orientation vectors returned by the Frangi filtering stage
+(all-zero background vectors are excluded).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fbr_vec</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>shape=</em><em>(</em><em>N</em><em>,</em><em>3</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – array of fiber orientation vectors
+(reshaped super-voxel of shape=(Nz,Ny,Nx), i.e. N=Nz*Ny*Nx)</p></li>
+<li><p><strong>norm</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>shape=</em><em>(</em><em>N</em><em>,</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – 2-norm of fiber orientation vectors</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>phi</strong> (<em>numpy.ndarray (shape=(N,), dtype=float)</em>) – fiber azimuth angle [rad]</p></li>
+<li><p><strong>theta</strong> (<em>numpy.ndarray (shape=(N,), dtype=float)</em>) – fiber polar angle [rad]</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.spharm.compute_real_sph_harm">
+<span class="sig-prename descclassname"><span class="pre">foa3d.spharm.</span></span><span class="sig-name descname"><span class="pre">compute_real_sph_harm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sin_theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cos_theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm_factors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.spharm.compute_real_sph_harm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the coefficients of the real spherical harmonics series expansion
+as described by Alimi et al. (Medical Image Analysis, 2020).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>degree</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – degree index of the spherical harmonics expansion</p></li>
+<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – order index of the spherical harmonics expansion</p></li>
+<li><p><strong>phi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – azimuth angle [rad]</p></li>
+<li><p><strong>sin_theta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – polar angle sine</p></li>
+<li><p><strong>cos_theta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – polar angle cosine</p></li>
+<li><p><strong>norm_factors</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>dtype: float</em><em>)</em>) – normalization factors</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>real_sph_harm</strong> – real-valued spherical harmonic coefficient</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.spharm.factorial">
+<span class="sig-prename descclassname"><span class="pre">foa3d.spharm.</span></span><span class="sig-name descname"><span class="pre">factorial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.spharm.factorial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve factorial using pre-computed LUT.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – integer number (max: 20)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>f</strong> – factorial</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.spharm.fiber_angles_to_sph_harm">
+<span class="sig-prename descclassname"><span class="pre">foa3d.spharm.</span></span><span class="sig-name descname"><span class="pre">fiber_angles_to_sph_harm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degrees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm_factors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncoeff</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.spharm.fiber_angles_to_sph_harm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the real-valued symmetric spherical harmonics series expansion
+from fiber φ azimuth and θ polar angles,
+i.e. the spherical coordinates of the fiber orientation vectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phi</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>shape=</em><em>(</em><em>N</em><em>,</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – fiber azimuth angles [rad]
+(reshaped super-voxel of shape=(Nz,Ny,Nx), i.e. N=Nz*Ny*Nx)</p></li>
+<li><p><strong>theta</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>shape=</em><em>(</em><em>N</em><em>,</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – fiber polar angle [rad]
+(reshaped super-voxel of shape=(Nz,Ny,Nx), i.e. N=Nz*Ny*Nx)</p></li>
+<li><p><strong>degrees</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – degrees of the spherical harmonics expansion</p></li>
+<li><p><strong>norm_factors</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>dtype: float</em><em>)</em>) – normalization factors</p></li>
+<li><p><strong>ncoeff</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – number of spherical harmonics coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>real_sph_harm</strong> – array of real-valued spherical harmonics coefficients
+building the spherical harmonics series expansion</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a> (shape=(ncoeff,), dtype=float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.spharm.fiber_vectors_to_sph_harm">
+<span class="sig-prename descclassname"><span class="pre">foa3d.spharm.</span></span><span class="sig-name descname"><span class="pre">fiber_vectors_to_sph_harm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fbr_vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degrees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm_factors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.spharm.fiber_vectors_to_sph_harm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the real-valued symmetric spherical harmonics series expansion
+from the fiber orientation vectors returned by the Frangi filter stage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fbr_vec</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>shape=</em><em>(</em><em>N</em><em>,</em><em>3</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – array of fiber orientation vectors
+(reshaped super-voxel of shape=(Nz,Ny,Nx), i.e. N=Nz*Ny*Nx)</p></li>
+<li><p><strong>degrees</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – degrees of the spherical harmonics expansion</p></li>
+<li><p><strong>norm_factors</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>dtype: float</em><em>)</em>) – normalization factors</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>real_sph_harm</strong> – real-valued spherical harmonics coefficients</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a> (shape=(ncoeff,), dtype=float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.spharm.get_sph_harm_ncoeff">
+<span class="sig-prename descclassname"><span class="pre">foa3d.spharm.</span></span><span class="sig-name descname"><span class="pre">get_sph_harm_ncoeff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degrees</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.spharm.get_sph_harm_ncoeff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of coefficients of the real spherical harmonics series
+expansion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>degrees</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – degrees of the spherical harmonics series expansion</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ncoeff</strong> – number of spherical harmonics coefficients</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.spharm.get_sph_harm_norm_factors">
+<span class="sig-prename descclassname"><span class="pre">foa3d.spharm.</span></span><span class="sig-name descname"><span class="pre">get_sph_harm_norm_factors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degrees</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.spharm.get_sph_harm_norm_factors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the normalization factors of the real spherical harmonics series
+expansion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>degrees</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – degrees of the spherical harmonics series expansion</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>norm_factors</strong> – 2D array of spherical harmonics normalization factors</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a> (dtype: float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.spharm.norm_factor">
+<span class="sig-prename descclassname"><span class="pre">foa3d.spharm.</span></span><span class="sig-name descname"><span class="pre">norm_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.spharm.norm_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the normalization factor of the term of degree n and order m
+of the real-valued spherical harmonics series expansion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – degree index</p></li>
+<li><p><strong>m</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – order index</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>nf</strong> – normalization factor</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="slicing.html" class="btn btn-neutral float-left" title="foa3d.slicing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="utils.html" class="btn btn-neutral float-right" title="foa3d.utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Michele Sorelli.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

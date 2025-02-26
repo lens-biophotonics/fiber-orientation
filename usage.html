@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; Foa3D 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="https://docs.python.org/3/_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python module index" href="modules.html" />
+    <link rel="prev" title="Welcome to Foa3D’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Foa3D
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#microscopy-image-formats">Microscopy image formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#microscopy-image-resolution">Microscopy image resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#frangi-filter-configuration">Frangi filter configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parallelization">Parallelization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soma-rejection">Soma rejection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#orientation-distribution-functions">Orientation distribution functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#output-description">Output description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Python module index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Foa3D</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h1>
+<p>Create a virtual Python environment by executing the venv module:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python -m venv .foa3d_env
+</pre></div>
+</div>
+<p>Activate the newly created environment:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">source</span> .foa3d_env/bin/activate
+</pre></div>
+</div>
+<p>Install the wheel tool:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install wheel
+</pre></div>
+</div>
+<p>Build the Python wheel file by executing:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python setup.py bdist_wheel
+</pre></div>
+</div>
+<p>Install the wheel using pip:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install dist/foa3d-0.1.0-py3-none-any.whl
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<span id="id2"></span><h1>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h1>
+<section id="microscopy-image-formats">
+<span id="format"></span><h2>Microscopy image formats<a class="headerlink" href="#microscopy-image-formats" title="Permalink to this heading">¶</a></h2>
+<p>Foa3D supports 3D grayscale or RGB image stacks in TIFF format.
+Alternatively, a YAML stitch file created by the ZetaStitcher tool for large volumetric stack alignment
+and stitching [<a class="reference external" href="https://github.com/lens-biophotonics/ZetaStitcher">ZetaStitcher GitHub</a>] can be provided as input.
+To generate this stitch file from a collection of adjacent 3D stacks composing a tiled reconstruction of brain tissue,
+refer to the documentation at [<a class="reference external" href="https://github.com/lens-biophotonics/ZetaStitcher">ZetaStitcher GitHub</a>].
+In particular, the Foa3D tool uses the 3D stack alignment information contained in such a file to programmatically
+access and process basic image sub-volumes of appropriate size, allowing for the analysis of high-resolution mesoscopic
+microscopy images that exceed the typical memory available on low-resource machines.
+The YAML and image stack files must be located in the same directory.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>foa3d path/to/zetastitch.yml
+</pre></div>
+</div>
+</section>
+<section id="microscopy-image-resolution">
+<span id="resolution"></span><h2>Microscopy image resolution<a class="headerlink" href="#microscopy-image-resolution" title="Permalink to this heading">¶</a></h2>
+<p>The lateral and longitudinal voxel size (in μm) must be specified via the command line,
+along with the 3D full width at half maximum of the point spread function of the employed microscopy apparatus:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>... --px-size-xy <span class="m">0</span>.4 --px-size-z <span class="m">1</span> --psf-fwhm-x <span class="m">1</span>.5 --psf-fwhm-y <span class="m">1</span>.4 --psf-fwhm-z <span class="m">3</span>.1
+</pre></div>
+</div>
+<p>This information is required at the preprocessing stage of the pipeline to properly isotropize the spatial resolution
+of the raw microscopy images. In fact, since two-photon scanning and light-sheet fluorescence microscopes are in
+general characterized by a poorer resolution along the direction of the optical axis, the XY-plane of the sliced
+image sub-volumes typically needs to be blurred. A tailored Gaussian smoothing kernel is used in this regard.
+If not properly corrected, the residual anisotropy would otherwise introduce a systematic bias in the assessed
+3D fiber orientations.</p>
+</section>
+<section id="frangi-filter-configuration">
+<span id="frangi"></span><h2>Frangi filter configuration<a class="headerlink" href="#frangi-filter-configuration" title="Permalink to this heading">¶</a></h2>
+<p>Fiber enhancement and segmentation is achieved via a multiscale 3D Frangi filter [<a class="reference external" href="https://doi.org/10.1007/BFb0056195">Frangi, et al., 1998</a>].
+The spatial scales of the filter (in μm) can be provided via the <code class="docutils literal notranslate"><span class="pre">-s/--scales</span></code> option.
+As discussed in [<a class="reference external" href="https://doi.org/10.1038/s41598-023-30953-w">Sorelli, et al., 2023</a>],
+the optimal scales that best preserve the original intensity
+and cross-sectional size of the 3D tubular structures present in the analized images
+correspond to half of their expected radius.
+The response of the Frangi filter is also affected by three sensitivity parameters, α, β, and γ.
+In detail, lower α values tend to amplify the response of the filter to the presence of elongated structures,
+whereas an increase in β determines a relatively higher sensitivity to blob-shaped structures.
+Usually, the α and β sensitivity parameters need to be heuristically fixed for the specific application
+or image modality of interest:
+the default values, namely <code class="docutils literal notranslate"><span class="pre">α=0.001</span></code> and <code class="docutils literal notranslate"><span class="pre">β=1</span></code>, were shown to lead to a marked selective enhancement of
+tubular fiber structures, and to a considerable rejection of the neuronal soma.
+Whereas α and β are linked to grey-level-invariant geometrical features,
+the γ sensitivity is related to the image contrast:
+if not specified by the user, this parameter is automatically set to half of the maximum Hessian norm computed
+at each spatial scale of interest for each sliced image sub-volume.
+In the example below, the 3D Frangi filter is tuned so as to favour the enhancement of fiber structures having a
+cross-sectional diameter of 5 and 10 μm, with an automatic (local) contrast sensitivity:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>... -a <span class="m">0</span>.00001 -b <span class="m">0</span>.1 -s <span class="m">1</span>.25 <span class="m">2</span>.5
+</pre></div>
+</div>
+<p>Please keep in mind that the above automatic local adjustment of the γ sensitivity may produce discontinuities
+between the fiber orientation vector fields resulting from adjacent image slices handled by separate CPU cores.</p>
+</section>
+<section id="parallelization">
+<span id="id4"></span><h2>Parallelization<a class="headerlink" href="#parallelization" title="Permalink to this heading">¶</a></h2>
+<p>In order to speed up the fiber orientation analysis on large brain tissue sections, the Foa3D tool divides the input
+image reconstruction into basic slices of appropriate shape and assigns them to separate concurrent workers.
+By default, Foa3D will use all available logical cores: for instance, a batch of 32 image slices will be simultaneously
+processed on a 32-core CPU. The multiscale Frangi filter, on the other hand, is not currently parallelized in order to
+avoid unnecessary overhead and resource oversubscription within the nested parallel loop. The size of the basic image
+slices is automatically determined by the available RAM. The <code class="docutils literal notranslate"><span class="pre">--job</span></code> and <code class="docutils literal notranslate"><span class="pre">--ram</span></code> options can be specified
+differently via the command line to limit the employed resources.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>... --jobs <span class="m">8</span> --ram <span class="m">32</span>
+</pre></div>
+</div>
+</section>
+<section id="soma-rejection">
+<span id="somamask"></span><h2>Soma rejection<a class="headerlink" href="#soma-rejection" title="Permalink to this heading">¶</a></h2>
+<p>A neuronal soma fluorescence channel may be optionally provided to Foa3D for improving the specificity of the resulting
+fiber orientation maps, which is otherwise dependent on the inherent attenuation of non-tubular objects offered by the
+Frangi filter. This is performed via a postprocessing step that further suppresses neuronal bodies by applying Yen’s
+automatic thresholding algorithm to an optionally provided channel. The enhanced neuronal body rejection may be
+activated via the <code class="docutils literal notranslate"><span class="pre">-c/--cell-msk</span></code> option, modifying, if required, the default channel related to the soma fluorescence:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>... -c --fb-ch <span class="m">0</span> --bc-ch <span class="m">1</span>
+</pre></div>
+</div>
+</section>
+<section id="orientation-distribution-functions">
+<span id="odf"></span><h2>Orientation distribution functions<a class="headerlink" href="#orientation-distribution-functions" title="Permalink to this heading">¶</a></h2>
+<p>High-resolution fiber orientation data obtained at the native pixel size of the imaging system can be integrated into
+orientation distribution functions (ODFs), providing a comprehensive statistical description
+of 3D fiber tract orientations within larger spatial compartments or super-voxels.
+ODFs are highly suitable for a multimodal quantitative comparison with spatial fiber architectures
+mapped by other high-resolution optical modalities, as 3D-Polarized Light Imaging
+[<a class="reference external" href="https://doi.org/10.3389/fnana.2016.00040">Axer, et al., 2016</a>].
+Furthermore, the spatial downscaling produced by the ODF estimation allows to bridge the gulf between the meso-
+and macro-scale connectomics that is generally targeted by diffusion magnetic resonance imaging (dMRI).
+The Foa3D tool features the generation of fiber ODFs from the 3D orientation vector fields returned by
+the Frangi filtering stage via the fast analytical approach described in
+[<a class="reference external" href="https://doi.org/10.1016/j.media.2020.101760">Alimi, et al., 2020</a>].
+Alimi’s method is computationally efficient and is characterized by improved angular precision and resolution
+with respect to deriving the ODFs by modeling local directional histograms of discretized fiber orientations.
+The multiscale estimation of fiber ODFs may be enabled by providing a list of super-voxel sides (in μm) via
+the <code class="docutils literal notranslate"><span class="pre">-o/--odf-res</span></code> option:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>... --odf-res <span class="m">25</span> <span class="m">50</span> <span class="m">100</span> <span class="m">200</span>
+</pre></div>
+</div>
+<p>Foa3D also provides the possibility to directly execute the multiscale analysis of fiber ODFs,
+skipping the Frangi filter stage, on pre-computed 3D fiber orientation vector fields (TIFF format):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>foa3d.py path/to/fiber_vector_field.npy --odf-res <span class="m">500</span> <span class="m">1000</span>
+</pre></div>
+</div>
+<p>The fiber ODFs returned by the Foa3D tool may be accessed using the open source MRtrix3 software package
+for medical image processing and visualization
+[<a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2019.116137">Tournier, et al., 2019</a>].</p>
+</section>
+<section id="output-description">
+<h2>Output description<a class="headerlink" href="#output-description" title="Permalink to this heading">¶</a></h2>
+<p>The Frangi filter and ODF generation stages of the Foa3D tool export the series of TIFF and NIfTI images listed below.
+Images exported by default are reported in bold; the remaining ones can be produced as well, e.g. for testing purposes,
+by selecting the “export all” option (-e or –exp-all) via CLI.</p>
+<ol class="arabic">
+<li><p>Frangi filter stage:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Normalized response of the Frangi filter (<em>path/to/save_dir/frangi/frangi_filter_*cfg_sfx*</em>, type: uint8, format: TIFF)</p></li>
+<li><p>Binarized response of the Frangi filter (<em>path/to/save_dir/frangi/fiber_msk_*cfg_sfx*</em>, type: uint8, format: TIFF)</p></li>
+<li><p>Optional mask of neuronal cell bodies (<em>path/to/save_dir/frangi/soma_msk_*cfg_sfx*</em>, type: uint8, format: TIFF)</p></li>
+<li><p><strong>Fiber orientation vector field</strong> (<em>path/to/save_dir/frangi/fiber_vec_*cfg_sfx*</em>, type: float32, format: TIFF)</p></li>
+<li><p><strong>Fiber orientation colormap</strong> (<em>path/to/save_dir/frangi/fiber_cmap_*cfg_sfx*</em>, type: uint8, format: TIFF)</p></li>
+<li><p>Fractional anisotropy (<em>path/to/save_dir/frangi/frac_anis_*cfg_sfx*</em>, type: float32, format: TIFF)</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Orientation distribution functions (ODF) stage (one file for each super-voxel size requested via CLI):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>ODF</strong> (<em>path/to/save_dir/odf/odf_mrtrixview_*cfg_sfx*</em>, type: float32, format: NIfTI)</p></li>
+<li><p><strong>ODF background</strong> (<em>path/to/save_dir/odf/bg_mrtrixview_*cfg_sfx*</em>, type: uint8, format: NIfTI)</p></li>
+<li><p><strong>Total fiber orientation dispersion</strong> (<em>path/to/save_dir/odf/odi_tot_*cfg_sfx*</em>, type: float32, format: TIFF)</p></li>
+<li><p>Primary fiber orientation dispersion (<em>path/to/save_dir/odf/odi_pri_*cfg_sfx*</em>, type: float32, format: TIFF)</p></li>
+<li><p>Secondary fiber orientation dispersion (<em>path/to/save_dir/odf/odi_sec_*cfg_sfx*</em>, type: float32, format: TIFF)</p></li>
+<li><p>Fiber orientation dispersion anisotropy (<em>path/to/save_dir/odf/odi_anis_*cfg_sfx*</em>, type: float32, format: TIFF)</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<p>The suffix <em>*cfg_sfx*</em> reports information on the particular configuration of the tool, namely:
+name of the input microscopy image, scale(s) of the 3D Frangi filter; sensitivity of the filter (α, β, γ);
+super-voxel size (ODF stage only).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Foa3D’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="Python module index" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Michele Sorelli.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

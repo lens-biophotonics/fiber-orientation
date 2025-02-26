@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>foa3d.slicing &mdash; Foa3D 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="https://docs.python.org/3/_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="foa3d.spharm" href="spharm.html" />
+    <link rel="prev" title="foa3d.printing" href="printing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Foa3D
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html#usage">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Python module index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="frangi.html">foa3d.frangi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">foa3d.input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="odf.html">foa3d.odf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">foa3d.output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html">foa3d.pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">foa3d.preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="printing.html">foa3d.printing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">foa3d.slicing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.slicing.adjust_axis_range"><code class="docutils literal notranslate"><span class="pre">adjust_axis_range()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.slicing.check_background"><code class="docutils literal notranslate"><span class="pre">check_background()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.slicing.compute_axis_range"><code class="docutils literal notranslate"><span class="pre">compute_axis_range()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.slicing.compute_overlap"><code class="docutils literal notranslate"><span class="pre">compute_overlap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.slicing.compute_slice_range"><code class="docutils literal notranslate"><span class="pre">compute_slice_range()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.slicing.compute_slice_shape"><code class="docutils literal notranslate"><span class="pre">compute_slice_shape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.slicing.crop"><code class="docutils literal notranslate"><span class="pre">crop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.slicing.crop_img_dict"><code class="docutils literal notranslate"><span class="pre">crop_img_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.slicing.generate_slice_ranges"><code class="docutils literal notranslate"><span class="pre">generate_slice_ranges()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.slicing.get_slicing_config"><code class="docutils literal notranslate"><span class="pre">get_slicing_config()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.slicing.slice_image"><code class="docutils literal notranslate"><span class="pre">slice_image()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spharm.html">foa3d.spharm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">foa3d.utils</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Foa3D</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">Python module index</a> &raquo;</li>
+      <li>foa3d.slicing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/slicing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-foa3d.slicing">
+<span id="foa3d-slicing"></span><h1>foa3d.slicing<a class="headerlink" href="#module-foa3d.slicing" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.slicing.adjust_axis_range">
+<span class="sig-prename descclassname"><span class="pre">foa3d.slicing.</span></span><span class="sig-name descname"><span class="pre">adjust_axis_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slc_shp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_shp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slc_per_ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ovlp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shp_thr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.slicing.adjust_axis_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trim slice axis range at image boundaries
+and adjust padded ranges accordingly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – iteration counter along axis</p></li>
+<li><p><strong>slc_shp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – slice shape along axis [px]</p></li>
+<li><p><strong>img_shp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – total image shape along axis [px]</p></li>
+<li><p><strong>slc_per_ax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – slices along axis</p></li>
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – start coordinate [px]</p></li>
+<li><p><strong>stop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – stop coordinate [px]</p></li>
+<li><p><strong>ovlp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – overlapping range between slices along each axis [px]</p></li>
+<li><p><strong>shp_thr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – minimum slice side [px]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>start</strong> (<em>int</em>) – adjusted start coordinate [px]</p></li>
+<li><p><strong>stop</strong> (<em>int</em>) – adjusted stop coordinate [px]</p></li>
+<li><p><strong>pad</strong> (<em>numpy.ndarray (shape=(2,), dtype=int)</em>) – lower and upper padding ranges [px]</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.slicing.check_background">
+<span class="sig-prename descclassname"><span class="pre">foa3d.slicing.</span></span><span class="sig-name descname"><span class="pre">check_background</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ts_msk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ts_thr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.slicing.check_background" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the input image predominantly includes background voxels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>)</em>) – </p></li>
+<li><p><strong>ts_msk</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>, </em><em>dtype=bool</em><em>)</em>) – tissue reconstruction binary mask</p></li>
+<li><p><strong>ts_thr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – relative threshold on non-zero voxels</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>not_bg</strong> – foreground boolean flag</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.slicing.compute_axis_range">
+<span class="sig-prename descclassname"><span class="pre">foa3d.slicing.</span></span><span class="sig-name descname"><span class="pre">compute_axis_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slc_shp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_shp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slc_per_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ovlp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shp_thr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.slicing.compute_axis_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adjust image slice coordinates at boundaries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – image axis</p></li>
+<li><p><strong>ax_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – iteration counter along axis (see pipeline.iterate_frangi_on_slices)</p></li>
+<li><p><strong>slc_shp</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>shape=</em><em>(</em><em>3</em><em>,</em><em>)</em><em>, </em><em>dtype=int</em><em>)</em>) – shape of the basic image slices
+analyzed using parallel threads [px]</p></li>
+<li><p><strong>img_shp</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>shape=</em><em>(</em><em>3</em><em>,</em><em>)</em><em>, </em><em>dtype=int</em><em>)</em>) – total image shape [px]</p></li>
+<li><p><strong>slc_per_dim</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>shape=</em><em>(</em><em>3</em><em>,</em><em>)</em><em>, </em><em>dtype=int</em><em>)</em>) – image slices along each axis</p></li>
+<li><p><strong>ovlp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – overlapping range between slices along each axis [px]</p></li>
+<li><p><strong>flip</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – flip axes</p></li>
+<li><p><strong>shp_thr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – minimum slice side [px]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>start</strong> (<em>int</em>) – start index [px]</p></li>
+<li><p><strong>stop</strong> (<em>int</em>) – stop index [px]</p></li>
+<li><p><strong>pad</strong> (<em>numpy.ndarray (shape=(2,), dtype=int)</em>) – lower and upper padding ranges [px]</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.slicing.compute_overlap">
+<span class="sig-prename descclassname"><span class="pre">foa3d.slicing.</span></span><span class="sig-name descname"><span class="pre">compute_overlap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">smooth_sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frangi_sigma_um</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rsz_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trunc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.slicing.compute_overlap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute lateral slice extension range
+for coping with smoothing-related boundary artifacts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>smooth_sigma</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>shape=</em><em>(</em><em>3</em><em>,</em><em>)</em><em>, </em><em>dtype=int</em><em>)</em>) – 3D standard deviation of the smoothing Gaussian filter [px]</p></li>
+<li><p><strong>frangi_sigma_um</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>dtype=float</em><em>)</em>) – analyzed spatial scales [μm]</p></li>
+<li><p><strong>rsz_ratio</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>shape=</em><em>(</em><em>3</em><em>,</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – 3D image resize ratio</p></li>
+<li><p><strong>trunc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – neglect the Gaussian smoothing kernel
+after this many standard deviations</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ovlp</strong> – overlapping range between image slices along each axis [px]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.slicing.compute_slice_range">
+<span class="sig-prename descclassname"><span class="pre">foa3d.slicing.</span></span><span class="sig-name descname"><span class="pre">compute_slice_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slc_shp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_shp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slc_per_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ovlp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shp_thr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.slicing.compute_slice_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute basic slice coordinates from microscopy volumetric image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a>) – iteration counters along each axis</p></li>
+<li><p><strong>slc_shp</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>shape=</em><em>(</em><em>3</em><em>,</em><em>)</em><em>, </em><em>dtype=int</em><em>)</em>) – shape of the basic image slices
+analyzed using parallel threads [px]</p></li>
+<li><p><strong>img_shp</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>shape=</em><em>(</em><em>3</em><em>,</em><em>)</em><em>, </em><em>dtype=int</em><em>)</em>) – total image shape [px]</p></li>
+<li><p><strong>slc_per_dim</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>shape=</em><em>(</em><em>3</em><em>,</em><em>)</em><em>, </em><em>dtype=int</em><em>)</em>) – image slices along each axis</p></li>
+<li><p><strong>ovlp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – overlapping range between slices along each axis [px]</p></li>
+<li><p><strong>flip</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – flip axes</p></li>
+<li><p><strong>shp_thr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – minimum slice side [px]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>rng</strong> (<em>np.ndarray</em>) – 3D slice index ranges [px]</p></li>
+<li><p><strong>pad</strong> (<em>np.ndarray (shape=(3,2), dtype=int)</em>) – slice padding range [px]</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.slicing.compute_slice_shape">
+<span class="sig-prename descclassname"><span class="pre">foa3d.slicing.</span></span><span class="sig-name descname"><span class="pre">compute_slice_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img_shp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_sz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slc_sz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ovlp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.slicing.compute_slice_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute basic image chunk shape depending on its maximum size (in bytes).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_shp</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>shape=</em><em>(</em><em>3</em><em>,</em><em>)</em><em>, </em><em>dtype=int</em><em>)</em>) – total image shape [px]</p></li>
+<li><p><strong>item_sz</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – image item size [B]</p></li>
+<li><p><strong>slc_sz</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – maximum memory size of the basic image slices
+analyzed using parallel threads [B]</p></li>
+<li><p><strong>ovlp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – overlapping range between image slices along each axis [px]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>slc_shp</strong> – shape of the basic image slices
+analyzed using parallel threads [px]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a> (shape=(3,), dtype=int)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.slicing.crop">
+<span class="sig-prename descclassname"><span class="pre">foa3d.slicing.</span></span><span class="sig-name descname"><span class="pre">crop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ovlp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.slicing.crop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shrink image slice at total volume boundaries, for overall shape consistency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>)</em>) – 3D microscopy image</p></li>
+<li><p><strong>rng</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a>) – 3D slice index range</p></li>
+<li><p><strong>ovlp</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>, </em><em>dtype=int</em><em>)</em>) – overlapping range between image slices [px]</p></li>
+<li><p><strong>flip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a>) – flipped axes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>img_out</strong> – cropped microscopy image</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.slicing.crop_img_dict">
+<span class="sig-prename descclassname"><span class="pre">foa3d.slicing.</span></span><span class="sig-name descname"><span class="pre">crop_img_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ovlp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.slicing.crop_img_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shrink list of image slices at total volume boundaries, for overall shape consistency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – dictionary of image data to be cropped</p></li>
+<li><p><strong>rng</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a>) – 3D slice index range</p></li>
+<li><p><strong>ovlp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – overlapping range between image slices along each axis [px]</p></li>
+<li><p><strong>flip</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a>) – flipped axes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>img_dict</strong> – dictionary of cropped image slices</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.slicing.generate_slice_ranges">
+<span class="sig-prename descclassname"><span class="pre">foa3d.slicing.</span></span><span class="sig-name descname"><span class="pre">generate_slice_ranges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.slicing.generate_slice_ranges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate image slice ranges for the Frangi filtering stage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_img</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – <p>input image dictionary</p>
+<blockquote>
+<div><dl class="simple">
+<dt>data: numpy.ndarray or NumPy memory-map object (axis order=(Z,Y,X) or (Z,Y,X,C) or (Z,C,Y,X))</dt><dd><p>3D microscopy image</p>
+</dd>
+<dt>ts_msk: numpy.ndarray (dtype=bool)</dt><dd><p>tissue reconstruction binary mask</p>
+</dd>
+<dt>ch_ax: int</dt><dd><p>RGB image channel axis (either 1, 3, or None for grayscale images)</p>
+</dd>
+<dt>fb_ch: int</dt><dd><p>neuronal fibers channel</p>
+</dd>
+<dt>bc_ch: int</dt><dd><p>brain cell soma channel</p>
+</dd>
+<dt>msk_bc: bool</dt><dd><p>if True, mask neuronal bodies within
+the optionally provided channel</p>
+</dd>
+<dt>psf_fwhm: numpy.ndarray (shape=(3,), dtype=float)</dt><dd><p>3D FWHM of the PSF [μm]</p>
+</dd>
+<dt>px_sz: numpy.ndarray (shape=(3,), dtype=float)</dt><dd><p>pixel size [μm]</p>
+</dd>
+<dt>name: str</dt><dd><p>name of the 3D microscopy image</p>
+</dd>
+<dt>is_vec: bool</dt><dd><p>vector field flag</p>
+</dd>
+<dt>shape: numpy.ndarray (shape=(3,), dtype=int)</dt><dd><p>total image shape</p>
+</dd>
+<dt>shape_um: numpy.ndarray (shape=(3,), dtype=float)</dt><dd><p>total image shape [μm]</p>
+</dd>
+<dt>item_sz: int</dt><dd><p>image item size [B]</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+<li><p><strong>cfg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – <p>Frangi filter configuration</p>
+<blockquote>
+<div><dl class="simple">
+<dt>alpha: float</dt><dd><p>plate-like score sensitivity</p>
+</dd>
+<dt>beta: float</dt><dd><p>blob-like score sensitivity</p>
+</dd>
+<dt>gamma: float</dt><dd><p>background score sensitivity</p>
+</dd>
+<dt>scales_px: numpy.ndarray (dtype=float)</dt><dd><p>Frangi filter scales [px]</p>
+</dd>
+<dt>scales_um: numpy.ndarray (dtype=float)</dt><dd><p>Frangi filter scales [μm]</p>
+</dd>
+<dt>smooth_sd: numpy.ndarray (shape=(3,), dtype=int)</dt><dd><p>3D standard deviation of the smoothing Gaussian filter [px]</p>
+</dd>
+<dt>px_sz: numpy.ndarray (shape=(3,), dtype=float)</dt><dd><p>pixel size [μm]</p>
+</dd>
+<dt>bc_ch: int</dt><dd><p>neuronal bodies channel</p>
+</dd>
+<dt>fb_ch: int</dt><dd><p>myelinated fibers channel</p>
+</dd>
+<dt>msk_bc: bool</dt><dd><p>if True, mask neuronal bodies within
+the optionally provided channel</p>
+</dd>
+<dt>hsv_cmap: bool</dt><dd><p>generate HSV colormap of 3D fiber orientations</p>
+</dd>
+<dt>exp_all: bool</dt><dd><p>export all images</p>
+</dd>
+<dt>rsz: numpy.ndarray (shape=(3,), dtype=float)</dt><dd><p>3D image resize ratio</p>
+</dd>
+<dt>ram: float</dt><dd><p>maximum RAM available to the Frangi filter stage [B]</p>
+</dd>
+<dt>jobs: int</dt><dd><p>number of parallel jobs (threads)
+used by the Frangi filter stage</p>
+</dd>
+<dt>batch: int</dt><dd><p>slice batch size</p>
+</dd>
+<dt>slc_shp: numpy.ndarray (shape=(3,), dtype=int)</dt><dd><p>shape of the basic image slices
+analyzed using parallel threads [px]</p>
+</dd>
+<dt>ovlp: int</dt><dd><p>overlapping range between image slices along each axis [px]</p>
+</dd>
+<dt>tot_slc: int</dt><dd><p>total number of image slices</p>
+</dd>
+<dt>z_out: NumPy slice object</dt><dd><p>output z-range</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p><strong>slc_rng</strong> –</p>
+<dl class="simple">
+<dt>in: np.ndarray</dt><dd><p>3D input slice range [px]</p>
+</dd>
+<dt>pad: np.ndarray</dt><dd><p>3D slice padding range [px]</p>
+</dd>
+<dt>out: np.ndarray</dt><dd><p>3D output slice range [px]</p>
+</dd>
+<dt>bc: np.ndarray</dt><dd><p>(optional) brain cell soma slice range</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a> of dictionaries</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.slicing.get_slicing_config">
+<span class="sig-prename descclassname"><span class="pre">foa3d.slicing.</span></span><span class="sig-name descname"><span class="pre">get_slicing_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frangi_cfg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mem_growth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">149.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shp_thr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.slicing.get_slicing_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute size and number of the batches of basic microscopy image slices
+analyzed in parallel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_img</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – <p>input image dictionary</p>
+<blockquote>
+<div><dl class="simple">
+<dt>data: numpy.ndarray or NumPy memory-map object (axis order=(Z,Y,X) or (Z,Y,X,C) or (Z,C,Y,X))</dt><dd><p>3D microscopy image</p>
+</dd>
+<dt>ts_msk: numpy.ndarray (dtype=bool)</dt><dd><p>tissue reconstruction binary mask</p>
+</dd>
+<dt>ch_ax: int</dt><dd><p>RGB image channel axis (either 1, 3, or None for grayscale images)</p>
+</dd>
+<dt>fb_ch: int</dt><dd><p>neuronal fibers channel</p>
+</dd>
+<dt>bc_ch: int</dt><dd><p>brain cell soma channel</p>
+</dd>
+<dt>msk_bc: bool</dt><dd><p>if True, mask neuronal bodies within
+the optionally provided channel</p>
+</dd>
+<dt>psf_fwhm: numpy.ndarray (shape=(3,), dtype=float)</dt><dd><p>3D FWHM of the PSF [μm]</p>
+</dd>
+<dt>px_sz: numpy.ndarray (shape=(3,), dtype=float)</dt><dd><p>pixel size [μm]</p>
+</dd>
+<dt>name: str</dt><dd><p>name of the 3D microscopy image</p>
+</dd>
+<dt>is_vec: bool</dt><dd><p>vector field flag</p>
+</dd>
+<dt>shape: numpy.ndarray (shape=(3,), dtype=int)</dt><dd><p>total image shape</p>
+</dd>
+<dt>shape_um: numpy.ndarray (shape=(3,), dtype=float)</dt><dd><p>total image shape [μm]</p>
+</dd>
+<dt>item_sz: int</dt><dd><p>image item size [B]</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+<li><p><strong>frangi_cfg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – <p>Frangi filter configuration</p>
+<blockquote>
+<div><dl class="simple">
+<dt>alpha: float</dt><dd><p>plate-like score sensitivity</p>
+</dd>
+<dt>beta: float</dt><dd><p>blob-like score sensitivity</p>
+</dd>
+<dt>gamma: float</dt><dd><p>background score sensitivity</p>
+</dd>
+<dt>scales_px: numpy.ndarray (dtype=float)</dt><dd><p>Frangi filter scales [px]</p>
+</dd>
+<dt>scales_um: numpy.ndarray (dtype=float)</dt><dd><p>Frangi filter scales [μm]</p>
+</dd>
+<dt>smooth_sd: numpy.ndarray (shape=(3,), dtype=int)</dt><dd><p>3D standard deviation of the smoothing Gaussian filter [px]</p>
+</dd>
+<dt>px_sz: numpy.ndarray (shape=(3,), dtype=float)</dt><dd><p>pixel size [μm]</p>
+</dd>
+<dt>bc_ch: int</dt><dd><p>neuronal bodies channel</p>
+</dd>
+<dt>fb_ch: int</dt><dd><p>myelinated fibers channel</p>
+</dd>
+<dt>msk_bc: bool</dt><dd><p>if True, mask neuronal bodies within
+the optionally provided channel</p>
+</dd>
+<dt>hsv_cmap: bool</dt><dd><p>generate HSV colormap of 3D fiber orientations</p>
+</dd>
+<dt>exp_all: bool</dt><dd><p>export all images</p>
+</dd>
+<dt>rsz: numpy.ndarray (shape=(3,), dtype=float)</dt><dd><p>3D image resize ratio</p>
+</dd>
+<dt>ram: float</dt><dd><p>maximum RAM available to the Frangi filter stage [B]</p>
+</dd>
+<dt>jobs: int</dt><dd><p>number of parallel jobs (threads)
+used by the Frangi filter stage</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+<li><p><strong>mem_growth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – empirical memory growth factor
+of the Frangi filtering stage</p></li>
+<li><p><strong>shp_thr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – minimum slice side [px]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.slicing.slice_image">
+<span class="sig-prename descclassname"><span class="pre">foa3d.slicing.</span></span><span class="sig-name descname"><span class="pre">slice_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch_ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ts_msk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.slicing.slice_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Slice desired channel from input volumetric image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – 3D microscopy image</p></li>
+<li><p><strong>rng</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a><em> (</em><em>dtype=int</em><em>)</em>) – 3D index ranges</p></li>
+<li><p><strong>ch</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – channel</p></li>
+<li><p><strong>ch_ax</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – RGB image channel axis (either 1 or 3, or None for grayscale images)</p></li>
+<li><p><strong>ts_msk</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>dtype=bool</em><em>)</em>) – tissue binary mask</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>img_slc</strong> (<em>numpy.ndarray</em>) – image slice</p></li>
+<li><p><strong>ts_msk_slc</strong> (<em>numpy.ndarray (dtype=bool)</em>) – tissue mask slice</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="printing.html" class="btn btn-neutral float-left" title="foa3d.printing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="spharm.html" class="btn btn-neutral float-right" title="foa3d.spharm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Michele Sorelli.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

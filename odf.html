@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>foa3d.odf &mdash; Foa3D 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="https://docs.python.org/3/_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="foa3d.output" href="output.html" />
+    <link rel="prev" title="foa3d.input" href="input.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Foa3D
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html#usage">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Python module index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="frangi.html">foa3d.frangi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">foa3d.input</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">foa3d.odf</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.odf.compute_odf_map"><code class="docutils literal notranslate"><span class="pre">compute_odf_map()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.odf.compute_orientation_dispersion"><code class="docutils literal notranslate"><span class="pre">compute_orientation_dispersion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.odf.compute_vec_tensor_eigen"><code class="docutils literal notranslate"><span class="pre">compute_vec_tensor_eigen()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.odf.generate_odf_background"><code class="docutils literal notranslate"><span class="pre">generate_odf_background()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.odf.init_odf_arrays"><code class="docutils literal notranslate"><span class="pre">init_odf_arrays()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.odf.mask_orientation_dispersion"><code class="docutils literal notranslate"><span class="pre">mask_orientation_dispersion()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">foa3d.output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html">foa3d.pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">foa3d.preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="printing.html">foa3d.printing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slicing.html">foa3d.slicing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spharm.html">foa3d.spharm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">foa3d.utils</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Foa3D</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">Python module index</a> &raquo;</li>
+      <li>foa3d.odf</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/odf.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-foa3d.odf">
+<span id="foa3d-odf"></span><h1>foa3d.odf<a class="headerlink" href="#module-foa3d.odf" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.odf.compute_odf_map">
+<span class="sig-prename descclassname"><span class="pre">foa3d.odf.</span></span><span class="sig-name descname"><span class="pre">compute_odf_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fbr_vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">px_sz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fbr_dnst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vec_tnsr_eig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vx_thr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vec_thr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.odf.compute_odf_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the spherical harmonics coefficients iterating over super-voxels
+of fiber orientation vectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fbr_vec</strong> (<em>NumPy memory-map object</em><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>,</em><em>C</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – fiber orientation vectors</p></li>
+<li><p><strong>px_sz</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>shape=</em><em>(</em><em>3</em><em>,</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – adjusted isotropic pixel size [μm]</p></li>
+<li><p><strong>odf</strong> (<em>NumPy memory-map object</em><em> (</em><em>axis order=</em><em>(</em><em>X</em><em>,</em><em>Y</em><em>,</em><em>Z</em><em>,</em><em>C</em><em>)</em><em>, </em><em>dtype=float32</em><em>)</em>) – initialized array of ODF spherical harmonics coefficients</p></li>
+<li><p><strong>odi</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – <p>orientation dispersion dictionary</p>
+<blockquote>
+<div><dl class="simple">
+<dt>odi_pri: NumPy memory-map object (axis order=(Z,Y,X), dtype=float32)</dt><dd><p>primary orientation dispersion index</p>
+</dd>
+<dt>odi_sec: NumPy memory-map object (axis order=(Z,Y,X), dtype=float32)</dt><dd><p>secondary orientation dispersion index</p>
+</dd>
+<dt>odi_tot: NumPy memory-map object (axis order=(Z,Y,X), dtype=float32)</dt><dd><p>total orientation dispersion index</p>
+</dd>
+<dt>odi_anis: NumPy memory-map object (axis order=(Z,Y,X), dtype=float32)</dt><dd><p>orientation dispersion index anisotropy</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+<li><p><strong>fbr_dnst</strong> (<em>NumPy memory-map object</em><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – initialized fiber density image</p></li>
+<li><p><strong>vec_tnsr_eig</strong> (<em>NumPy memory-map object</em><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>,</em><em>C</em><em>)</em><em>, </em><em>dtype=float32</em><em>)</em>) – initialized array of orientation tensor eigenvalues</p></li>
+<li><p><strong>scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – side of the ODF super-voxel [px]</p></li>
+<li><p><strong>norm</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>dtype: float</em><em>)</em>) – 2D array of spherical harmonics normalization factors</p></li>
+<li><p><strong>deg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – degrees of the spherical harmonics series expansion</p></li>
+<li><p><strong>vx_thr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – minimum relative threshold on the sliced voxel volume</p></li>
+<li><p><strong>vec_thr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – minimum relative threshold on non-zero orientation vectors</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>odf</strong> (<em>numpy.ndarray (axis order=(X,Y,Z,C), dtype=float32)</em>) – volumetric map of real-valued spherical harmonics coefficients</p></li>
+<li><p><strong>fbr_dnst</strong> (<em>numpy.ndarray (axis order=(Z,Y,X), dtype=float)</em>) – fiber density image</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.odf.compute_orientation_dispersion">
+<span class="sig-prename descclassname"><span class="pre">foa3d.odf.</span></span><span class="sig-name descname"><span class="pre">compute_orientation_dispersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec_tnsr_eig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odi_pri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odi_sec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odi_tot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odi_anis</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.odf.compute_orientation_dispersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute orientation dispersion parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vec_tnsr_eig</strong> (<em>NumPy memory-map object</em><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>,</em><em>C</em><em>)</em><em>, </em><em>dtype=float32</em><em>)</em>) – orientation tensor eigenvalues
+computed from an ODF super-voxel</p></li>
+<li><p><strong>odi_pri</strong> (<em>NumPy memory-map object</em><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>, </em><em>dtype=float32</em><em>)</em>) – primary orientation dispersion index</p></li>
+<li><p><strong>odi_sec</strong> (<em>NumPy memory-map object</em><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>, </em><em>dtype=float32</em><em>)</em>) – secondary orientation dispersion index</p></li>
+<li><p><strong>odi_tot</strong> (<em>NumPy memory-map object</em><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>, </em><em>dtype=float32</em><em>)</em>) – total orientation dispersion index</p></li>
+<li><p><strong>odi_anis</strong> (<em>NumPy memory-map object</em><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>, </em><em>dtype=float32</em><em>)</em>) – orientation dispersion index anisotropy</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.odf.compute_vec_tensor_eigen">
+<span class="sig-prename descclassname"><span class="pre">foa3d.odf.</span></span><span class="sig-name descname"><span class="pre">compute_vec_tensor_eigen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fbr_vec</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.odf.compute_vec_tensor_eigen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the eigenvalues of the 3x3 orientation tensor
+obtained from a reshaped super-voxel of fiber orientation vectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fbr_vec</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>shape=</em><em>(</em><em>N</em><em>,</em><em>3</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – fiber orientation vectors
+(reshaped super-voxel of shape=(Nz,Ny,Nx), i.e. N=Nz*Ny*Nx)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>vec_tensor_eigen</strong> – orientation tensor eigenvalues in ascending order</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a> (shape=(3,), dtype=float32)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.odf.generate_odf_background">
+<span class="sig-prename descclassname"><span class="pre">foa3d.odf.</span></span><span class="sig-name descname"><span class="pre">generate_odf_background</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bg_mrtrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fbr_vec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iso_fbr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.odf.generate_odf_background" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the down-sampled background image required
+to visualize the 3D ODF map in MRtrix3.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bg_mrtrix</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>X</em><em>,</em><em>Y</em><em>,</em><em>Z</em><em>)</em><em>, </em><em>dtype=uint8</em><em>)</em>) – initialized background array for ODF visualization in MRtrix3</p></li>
+<li><p><strong>fbr_vec</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>,</em><em>C</em><em>)</em><em>, </em><em>dtype=float32</em><em>)</em>) – fiber orientation vectors</p></li>
+<li><p><strong>scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – side of the ODF super-voxel [px]</p></li>
+<li><p><strong>iso_fbr</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>, </em><em>dtype=uint8</em><em>)</em>) – isotropic fiber image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.odf.init_odf_arrays">
+<span class="sig-prename descclassname"><span class="pre">foa3d.odf.</span></span><span class="sig-name descname"><span class="pre">init_odf_arrays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec_img_shp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmp_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exp_all</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.odf.init_odf_arrays" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the output datasets of the ODF analysis stage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vec_img_shp</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a>) – vector volume shape [px]</p></li>
+<li><p><strong>tmp_dir</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – path to temporary folder</p></li>
+<li><p><strong>scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – fiber ODF resolution (super-voxel side [px])</p></li>
+<li><p><strong>deg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – degrees of the spherical harmonics series expansion</p></li>
+<li><p><strong>exp_all</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – export all images</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul>
+<li><p><strong>odf</strong> (<em>NumPy memory-map object (axis order=(X,Y,Z,C), dtype=float32)</em>) – initialized array of ODF spherical harmonics coefficients</p></li>
+<li><p><strong>odi</strong> (<em>dict</em>) –</p>
+<p>dispersion image dictionary</p>
+<blockquote>
+<div><dl class="simple">
+<dt>odi_pri: NumPy memory-map object (axis order=(Z,Y,X), dtype=float32)</dt><dd><p>initialized array of primary orientation dispersion parameters</p>
+</dd>
+<dt>odi_sec: NumPy memory-map object (axis order=(Z,Y,X), dtype=float32)</dt><dd><p>initialized array of secondary orientation dispersion parameters</p>
+</dd>
+<dt>odi_tot: NumPy memory-map object (axis order=(Z,Y,X), dtype=float32)</dt><dd><p>initialized array of total orientation dispersion parameters</p>
+</dd>
+<dt>odi_anis: NumPy memory-map object (axis order=(Z,Y,X), dtype=float32)</dt><dd><p>initialized array of orientation dispersion anisotropy parameters</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p><strong>fbr_dnst</strong> (<em>NumPy memory-map object (axis order=(Z,Y,X), dtype=float)</em>) – initialized fiber density image</p></li>
+<li><p><strong>bg_mrtrix</strong> (<em>NumPy memory-map object (axis order=(X,Y,Z), dtype=uint8)</em>) – initialized background for ODF visualization in MRtrix3</p></li>
+<li><p><strong>vec_tensor_eigen</strong> (<em>NumPy memory-map object (axis order=(Z,Y,X,C), dtype=float32)</em>) – initialized fiber orientation tensor eigenvalues</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.odf.mask_orientation_dispersion">
+<span class="sig-prename descclassname"><span class="pre">foa3d.odf.</span></span><span class="sig-name descname"><span class="pre">mask_orientation_dispersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec_tnsr_eig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">odi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.odf.mask_orientation_dispersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suppress orientation dispersion background.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vec_tnsr_eig</strong> (<em>NumPy memory-map object</em><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>,</em><em>C</em><em>)</em><em>, </em><em>dtype=float32</em><em>)</em>) – orientation tensor eigenvalues
+computed from an ODF super-voxel</p></li>
+<li><p><strong>odi</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – <p>orientation dispersion dictionary</p>
+<dl class="simple">
+<dt>odi_pri: NumPy memory-map object (axis order=(Z,Y,X), dtype=float32)</dt><dd><p>array of primary orientation dispersion parameters</p>
+</dd>
+<dt>odi_sec: NumPy memory-map object (axis order=(Z,Y,X), dtype=float32)</dt><dd><p>array of secondary orientation dispersion parameters</p>
+</dd>
+<dt>odi_tot: NumPy memory-map object (axis order=(Z,Y,X), dtype=float32)</dt><dd><p>array of total orientation dispersion parameters</p>
+</dd>
+<dt>odi_anis: NumPy memory-map object (axis order=(Z,Y,X), dtype=float32)</dt><dd><p>array of orientation dispersion anisotropy parameters</p>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="input.html" class="btn btn-neutral float-left" title="foa3d.input" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="output.html" class="btn btn-neutral float-right" title="foa3d.output" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Michele Sorelli.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

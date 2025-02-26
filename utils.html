@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>foa3d.utils &mdash; Foa3D 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="https://docs.python.org/3/_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="foa3d.spharm" href="spharm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Foa3D
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html#usage">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Python module index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="frangi.html">foa3d.frangi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">foa3d.input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="odf.html">foa3d.odf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">foa3d.output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html">foa3d.pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">foa3d.preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="printing.html">foa3d.printing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slicing.html">foa3d.slicing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spharm.html">foa3d.spharm</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">foa3d.utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.ceil_to_multiple"><code class="docutils literal notranslate"><span class="pre">ceil_to_multiple()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.create_background_mask"><code class="docutils literal notranslate"><span class="pre">create_background_mask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.create_memory_map"><code class="docutils literal notranslate"><span class="pre">create_memory_map()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.delete_tmp_data"><code class="docutils literal notranslate"><span class="pre">delete_tmp_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.detect_ch_axis"><code class="docutils literal notranslate"><span class="pre">detect_ch_axis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.divide_nonzero"><code class="docutils literal notranslate"><span class="pre">divide_nonzero()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.elapsed_time"><code class="docutils literal notranslate"><span class="pre">elapsed_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.fwhm_to_sigma"><code class="docutils literal notranslate"><span class="pre">fwhm_to_sigma()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.get_available_cores"><code class="docutils literal notranslate"><span class="pre">get_available_cores()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.get_config_label"><code class="docutils literal notranslate"><span class="pre">get_config_label()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.get_item_bytes"><code class="docutils literal notranslate"><span class="pre">get_item_bytes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.get_item_size"><code class="docutils literal notranslate"><span class="pre">get_item_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.hsv_orient_cmap"><code class="docutils literal notranslate"><span class="pre">hsv_orient_cmap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.normalize_angle"><code class="docutils literal notranslate"><span class="pre">normalize_angle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.normalize_image"><code class="docutils literal notranslate"><span class="pre">normalize_image()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.rgb_orient_cmap"><code class="docutils literal notranslate"><span class="pre">rgb_orient_cmap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.utils.transform_axes"><code class="docutils literal notranslate"><span class="pre">transform_axes()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Foa3D</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">Python module index</a> &raquo;</li>
+      <li>foa3d.utils</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-foa3d.utils">
+<span id="foa3d-utils"></span><h1>foa3d.utils<a class="headerlink" href="#module-foa3d.utils" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.ceil_to_multiple">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">ceil_to_multiple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multiple</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.ceil_to_multiple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Round up number to the nearest multiple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>number</strong> – number to be rounded</p></li>
+<li><p><strong>multiple</strong> – the input number will be rounded
+to the nearest multiple higher than this value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>rounded up number</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>rounded</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.create_background_mask">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">create_background_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'yen'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">black_bg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.create_background_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute background mask.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>)</em>) – 3D microscopy image</p></li>
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – image thresholding method</p></li>
+<li><p><strong>black_bg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – generate foreground mask</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>bg_msk</strong> – boolean background mask</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a> (axis order=(Z,Y,X), dtype=bool)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.create_memory_map">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">create_memory_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tmp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mmap_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w+'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.create_memory_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a memory-map to an array stored in a binary file on disk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dtype</strong> – data-type used to interpret the file contents</p></li>
+<li><p><strong>shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a>) – shape of the stored array</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – optional temporary filename</p></li>
+<li><p><strong>tmp</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – temporary file directory</p></li>
+<li><p><strong>arr</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – array to be mapped</p></li>
+<li><p><strong>mmap_mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – file opening mode</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>mmap</strong> – memory-mapped array</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>NumPy memory map</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.delete_tmp_data">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">delete_tmp_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tmp_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmp_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.delete_tmp_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete temporary folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tmp_dir</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – path to temporary folder to be removed</p></li>
+<li><p><strong>tmp_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a>) – temporary data dictionaries</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.detect_ch_axis">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">detect_ch_axis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.detect_ch_axis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detect image channel axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>img</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – 3D microscopy image</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ch_ax</strong> – channel axis (either 1 or 3)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.divide_nonzero">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">divide_nonzero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nd_array1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nd_array2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.divide_nonzero" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divide two arrays handling zero denominator values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nd_array1</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – dividend array</p></li>
+<li><p><strong>nd_array2</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – divisor array</p></li>
+<li><p><strong>new_val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – substituted value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>divided</strong> – divided array</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.elapsed_time">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">elapsed_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.elapsed_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute elapsed time from input start reference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>start_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – start time reference</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>tot</strong> (<em>float</em>) – total time [s]</p></li>
+<li><p><strong>hrs</strong> (<em>int</em>) – hours</p></li>
+<li><p><strong>mins</strong> (<em>int</em>) – minutes</p></li>
+<li><p><strong>secs</strong> (<em>int</em>) – seconds</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.fwhm_to_sigma">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">fwhm_to_sigma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fwhm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.fwhm_to_sigma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the standard deviation of a Gaussian distribution
+from its FWHM value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fwhm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – full width at half maximum</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sigma</strong> – standard deviation</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.get_available_cores">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">get_available_cores</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.get_available_cores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of available logical cores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>num_cpu</strong> – number of available cores</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.get_config_label">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">get_config_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cli_args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.get_config_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the output filename prefix including
+pipeline configuration information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cli_args</strong> (<em>see ArgumentParser.parse_args</em>) – updated namespace of command line arguments</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>cfg_lbl</strong> – Frangi filter configuration label</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.get_item_bytes">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">get_item_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.get_item_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve data item size in bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> or </em><em>HDF5 dataset</em>) – input data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>bts</strong> – item size in bytes</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.get_item_size">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">get_item_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.get_item_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the item size in bytes of a data type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dtype</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – data type identifier</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>item_sz</strong> – item size in bytes</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.hsv_orient_cmap">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">hsv_orient_cmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec_img</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.hsv_orient_cmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute HSV colormap of vector orientations from 3D vector field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>vec_img</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>,</em><em>C</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – orientation vectors</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>rgb_map</strong> – orientation color map</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a> (axis order=(Z,Y,X,C), dtype=uint8)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.normalize_angle">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">normalize_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">360.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.normalize_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize angle to [lower, upper) range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>angle</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>dtype=float</em><em>)</em>) – angular values to be normalized (in degrees)</p></li>
+<li><p><strong>lower</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – lower limit (default: 0.0)</p></li>
+<li><p><strong>upper</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – upper limit (default: 360.0)</p></li>
+<li><p><strong>dtype</strong> – output data type</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>angle</strong> – angular values (in degrees) normalized within [lower, upper)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a> (dtype=float)</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – if lower &gt;= upper</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.normalize_image">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">normalize_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_val=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_val=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_out_val=255.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.uint8'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.normalize_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize image data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – input image</p></li>
+<li><p><strong>min_val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – minimum input value</p></li>
+<li><p><strong>max_val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – maximum input value</p></li>
+<li><p><strong>max_out_val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – maximum output value</p></li>
+<li><p><strong>dtype</strong> – output data type</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>norm_img</strong> – normalized image</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.rgb_orient_cmap">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">rgb_orient_cmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec_img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stretch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.rgb_orient_cmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute RGB colormap of orientation vector components from 3D vector field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vec_img</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>,</em><em>C</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – n-dimensional array of orientation vectors</p></li>
+<li><p><strong>minimum</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – intensity that should be mapped to black (a scalar or array for R, G, B)</p></li>
+<li><p><strong>stretch</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – linear stretch of the image</p></li>
+<li><p><strong>q</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – asinh softening parameter</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>rgb_map</strong> – orientation color map</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a> (axis order=(Z,Y,X,C), dtype=uint8)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.utils.transform_axes">
+<span class="sig-prename descclassname"><span class="pre">foa3d.utils.</span></span><span class="sig-name descname"><span class="pre">transform_axes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nd_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flipped</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">swapped</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expand</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.utils.transform_axes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Manipulate axes and dimensions of the input array.
+The transformation sequence is:
+axes flip &gt;&gt;&gt; axes swap &gt;&gt;&gt; dimensions expansion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nd_array</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – input data array</p></li>
+<li><p><strong>swapped</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a><em> (</em><em>dtype=int</em><em>)</em>) – axes to be swapped</p></li>
+<li><p><strong>flipped</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a><em> (</em><em>dtype=int</em><em>)</em>) – axes to be flipped</p></li>
+<li><p><strong>expand</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – insert new axis at this position</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>nd_array</strong> – transformed data array</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="spharm.html" class="btn btn-neutral float-left" title="foa3d.spharm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Michele Sorelli.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

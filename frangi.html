@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>foa3d.frangi &mdash; Foa3D 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="https://docs.python.org/3/_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="foa3d.input" href="input.html" />
+    <link rel="prev" title="Python module index" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Foa3D
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html#usage">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Python module index</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">foa3d.frangi</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.frangi.analyze_hessian_eigen"><code class="docutils literal notranslate"><span class="pre">analyze_hessian_eigen()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.frangi.compute_dominant_eigen"><code class="docutils literal notranslate"><span class="pre">compute_dominant_eigen()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.frangi.compute_fractional_anisotropy"><code class="docutils literal notranslate"><span class="pre">compute_fractional_anisotropy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.frangi.compute_frangi_features"><code class="docutils literal notranslate"><span class="pre">compute_frangi_features()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.frangi.compute_scaled_hessian"><code class="docutils literal notranslate"><span class="pre">compute_scaled_hessian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.frangi.compute_scaled_orientation"><code class="docutils literal notranslate"><span class="pre">compute_scaled_orientation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.frangi.compute_scaled_vesselness"><code class="docutils literal notranslate"><span class="pre">compute_scaled_vesselness()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.frangi.frangi_filter"><code class="docutils literal notranslate"><span class="pre">frangi_filter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.frangi.init_frangi_arrays"><code class="docutils literal notranslate"><span class="pre">init_frangi_arrays()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.frangi.mask_background"><code class="docutils literal notranslate"><span class="pre">mask_background()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.frangi.reject_vesselness_background"><code class="docutils literal notranslate"><span class="pre">reject_vesselness_background()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.frangi.sort_eigen"><code class="docutils literal notranslate"><span class="pre">sort_eigen()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foa3d.frangi.write_frangi_arrays"><code class="docutils literal notranslate"><span class="pre">write_frangi_arrays()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">foa3d.input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="odf.html">foa3d.odf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">foa3d.output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html">foa3d.pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">foa3d.preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="printing.html">foa3d.printing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slicing.html">foa3d.slicing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spharm.html">foa3d.spharm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">foa3d.utils</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Foa3D</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">Python module index</a> &raquo;</li>
+      <li>foa3d.frangi</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/frangi.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-foa3d.frangi">
+<span id="foa3d-frangi"></span><h1>foa3d.frangi<a class="headerlink" href="#module-foa3d.frangi" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.frangi.analyze_hessian_eigen">
+<span class="sig-prename descclassname"><span class="pre">foa3d.frangi.</span></span><span class="sig-name descname"><span class="pre">analyze_hessian_eigen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trunc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.frangi.analyze_hessian_eigen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the eigenvalues of local Hessian matrices
+of the input image array, sorted by absolute value (in ascending order),
+along with the related (dominant) eigenvectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>)</em>) – 3D microscopy image</p></li>
+<li><p><strong>sigma</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – spatial scale [px]</p></li>
+<li><p><strong>trunc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – truncate the Gaussian smoothing kernel at this many standard deviations</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>eigval</strong> (<em>numpy.ndarray (axis order=(Z,Y,X,C), dtype=float)</em>) – Hessian eigenvalues sorted by absolute value (ascending order)</p></li>
+<li><p><strong>dom_eigvec</strong> (<em>numpy.ndarray (axis order=(Z,Y,X,C), dtype=float)</em>) – Hessian eigenvectors related to the dominant (minimum) eigenvalue</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.frangi.compute_dominant_eigen">
+<span class="sig-prename descclassname"><span class="pre">foa3d.frangi.</span></span><span class="sig-name descname"><span class="pre">compute_dominant_eigen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hessian</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.frangi.compute_dominant_eigen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the eigenvalues (sorted by absolute value)
+of symmetrical Hessian matrix, selecting the eigenvectors related to the dominant ones.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>hessian</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>,</em><em>C</em><em>,</em><em>C</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – input array of local Hessian matrices</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>srt_eigval</strong> (<em>numpy.ndarray (axis order=(Z,Y,X,C), dtype=float)</em>) – Hessian eigenvalues sorted by absolute value (ascending order)</p></li>
+<li><p><strong>dom_eigvec</strong> (<em>numpy.ndarray (axis order=(Z,Y,X,C), dtype=float)</em>) – Hessian eigenvectors related to the dominant (minimum) eigenvalue</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.frangi.compute_fractional_anisotropy">
+<span class="sig-prename descclassname"><span class="pre">foa3d.frangi.</span></span><span class="sig-name descname"><span class="pre">compute_fractional_anisotropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eigenval</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.frangi.compute_fractional_anisotropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute structure tensor fractional anisotropy
+as in Schilling et al. (2018).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>eigenval</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>,</em><em>C</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – structure tensor eigenvalues (at the best local spatial scale)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fa</strong> – fractional anisotropy</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a> (shape=(3,), dtype=float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.frangi.compute_frangi_features">
+<span class="sig-prename descclassname"><span class="pre">foa3d.frangi.</span></span><span class="sig-name descname"><span class="pre">compute_frangi_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eigen1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigen2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigen3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.frangi.compute_frangi_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the basic image features employed by the Frangi filter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eigen1</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – lowest Hessian eigenvalue (i.e., the dominant eigenvalue)</p></li>
+<li><p><strong>eigen2</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – middle Hessian eigenvalue</p></li>
+<li><p><strong>eigen3</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – highest Hessian eigenvalue</p></li>
+<li><p><strong>gamma</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – background score sensitivity</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>ra</strong> (<em>numpy.ndarray (axis order=(Z,Y,X), dtype=float)</em>) – plate-like object score</p></li>
+<li><p><strong>rb</strong> (<em>numpy.ndarray (axis order=(Z,Y,X), dtype=float)</em>) – blob-like object score</p></li>
+<li><p><strong>s</strong> (<em>numpy.ndarray (axis order=(Z,Y,X), dtype=float)</em>) – second-order structureness</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – background score sensitivity
+(automatically computed if not provided as input)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.frangi.compute_scaled_hessian">
+<span class="sig-prename descclassname"><span class="pre">foa3d.frangi.</span></span><span class="sig-name descname"><span class="pre">compute_scaled_hessian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trunc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.frangi.compute_scaled_hessian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the scaled and normalized Hessian matrices of the input image.
+This is then used to estimate Frangi’s vesselness probability score.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>)</em>) – 3D microscopy image</p></li>
+<li><p><strong>sigma</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – spatial scale [px]</p></li>
+<li><p><strong>trunc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – truncate the Gaussian smoothing kernel at this many standard deviations</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>hessian</strong> – Hessian matrix of image second derivatives</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a> (axis order=(Z,Y,X,C,C), dtype=float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.frangi.compute_scaled_orientation">
+<span class="sig-prename descclassname"><span class="pre">foa3d.frangi.</span></span><span class="sig-name descname"><span class="pre">compute_scaled_orientation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale_px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.frangi.compute_scaled_orientation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute fiber orientation vectors at the input spatial scale of interest</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale_px</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – spatial scale [px]</p></li>
+<li><p><strong>img</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>)</em>) – 3D microscopy image</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – plate-like score sensitivity</p></li>
+<li><p><strong>beta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – blob-like score sensitivity</p></li>
+<li><p><strong>gamma</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – background score sensitivity</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>frangi_img</strong> (<em>numpy.ndarray (axis order=(Z,Y,X), dtype=float)</em>) – Frangi’s vesselness likelihood image</p></li>
+<li><p><strong>eigvec</strong> (<em>numpy.ndarray (axis order=(Z,Y,X,C), dtype=float)</em>) – 3D orientation map at the input spatial scale</p></li>
+<li><p><strong>eigval</strong> (<em>numpy.ndarray (axis order=(Z,Y,X,C), dtype=float)</em>) – Hessian eigenvalues sorted by absolute value (ascending order)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.frangi.compute_scaled_vesselness">
+<span class="sig-prename descclassname"><span class="pre">foa3d.frangi.</span></span><span class="sig-name descname"><span class="pre">compute_scaled_vesselness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eigen1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigen2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigen3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.frangi.compute_scaled_vesselness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate Frangi’s vesselness probability.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eigen1</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – lowest Hessian eigenvalue (i.e., the dominant eigenvalue)</p></li>
+<li><p><strong>eigen2</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – middle Hessian eigenvalue</p></li>
+<li><p><strong>eigen3</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – highest Hessian eigenvalue</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – plate-like score sensitivity</p></li>
+<li><p><strong>beta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – blob-like score sensitivity</p></li>
+<li><p><strong>gamma</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – background score sensitivity</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>vesselness</strong> – Frangi’s vesselness likelihood image</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a> (axis order=(Z,Y,X), dtype=float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.frangi.frangi_filter">
+<span class="sig-prename descclassname"><span class="pre">foa3d.frangi.</span></span><span class="sig-name descname"><span class="pre">frangi_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scales_px</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hsv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_fa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.frangi.frangi_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply 3D Frangi filter to 3D microscopy image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>)</em>) – 3D microscopy image</p></li>
+<li><p><strong>scales_px</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em> or </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>dtype=int</em><em>)</em>) – analyzed spatial scales [px]</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – plate-like score sensitivity</p></li>
+<li><p><strong>beta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – blob-like score sensitivity</p></li>
+<li><p><strong>gamma</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – background score sensitivity (if None, gamma is automatically tailored)</p></li>
+<li><p><strong>hsv</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – generate an HSV colormap of 3D fiber orientations</p></li>
+<li><p><strong>_fa</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – compute fractional anisotropy</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p><strong>out_slc</strong> –</p>
+<p>slice output data</p>
+<blockquote>
+<div><dl class="simple">
+<dt>vec: numpy.ndarray (axis order=(Z,Y,X,C), dtype=float)</dt><dd><p>3D fiber orientation field</p>
+</dd>
+<dt>clr: numpy.ndarray (axis order=(Z,Y,X,C), dtype=uint8)</dt><dd><p>orientation colormap image</p>
+</dd>
+<dt>fa: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>fractional anisotropy image</p>
+</dd>
+<dt>frangi: numpy.ndarray (axis order=(Z,Y,X), dtype=float)</dt><dd><p>Frangi’s vesselness likelihood image</p>
+</dd>
+</dl>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.frangi.init_frangi_arrays">
+<span class="sig-prename descclassname"><span class="pre">foa3d.frangi.</span></span><span class="sig-name descname"><span class="pre">init_frangi_arrays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmp_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.frangi.init_frangi_arrays" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the output datasets of the Frangi filter stage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_img</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – <p>input image dictionary</p>
+<blockquote>
+<div><dl class="simple">
+<dt>data: numpy.ndarray (axis order=(Z,Y,X) or (Z,Y,X,C) or (Z,C,Y,X))</dt><dd><p>3D microscopy image</p>
+</dd>
+<dt>ts_msk: numpy.ndarray (dtype=bool)</dt><dd><p>tissue reconstruction binary mask</p>
+</dd>
+<dt>ch_ax: int</dt><dd><p>RGB image channel axis (either 1, 3, or None for grayscale images)</p>
+</dd>
+<dt>fb_ch: int</dt><dd><p>neuronal fibers channel</p>
+</dd>
+<dt>bc_ch: int</dt><dd><p>brain cell soma channel</p>
+</dd>
+<dt>msk_bc: bool</dt><dd><p>if True, mask neuronal bodies within
+the optionally provided channel</p>
+</dd>
+<dt>psf_fwhm: numpy.ndarray (shape=(3,), dtype=float)</dt><dd><p>3D FWHM of the PSF [μm]</p>
+</dd>
+<dt>px_sz: numpy.ndarray (shape=(3,), dtype=float)</dt><dd><p>pixel size [μm]</p>
+</dd>
+<dt>name: str</dt><dd><p>name of the 3D microscopy image</p>
+</dd>
+<dt>is_vec: bool</dt><dd><p>vector field flag</p>
+</dd>
+<dt>shape: numpy.ndarray (shape=(3,), dtype=int)</dt><dd><p>total image shape</p>
+</dd>
+<dt>shape_um: numpy.ndarray (shape=(3,), dtype=float)</dt><dd><p>total image shape [μm]</p>
+</dd>
+<dt>item_sz: int</dt><dd><p>image item size [B]</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+<li><p><strong>cfg</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – <p>Frangi filter configuration</p>
+<blockquote>
+<div><dl class="simple">
+<dt>alpha: float</dt><dd><p>plate-like score sensitivity</p>
+</dd>
+<dt>beta: float</dt><dd><p>blob-like score sensitivity</p>
+</dd>
+<dt>gamma: float</dt><dd><p>background score sensitivity</p>
+</dd>
+<dt>scales_px: numpy.ndarray (dtype=float)</dt><dd><p>Frangi filter scales [px]</p>
+</dd>
+<dt>scales_um: numpy.ndarray (dtype=float)</dt><dd><p>Frangi filter scales [μm]</p>
+</dd>
+<dt>smooth_sd: numpy.ndarray (shape=(3,), dtype=int)</dt><dd><p>3D standard deviation of the smoothing Gaussian filter [px]</p>
+</dd>
+<dt>px_sz: numpy.ndarray (shape=(3,), dtype=float)</dt><dd><p>pixel size [μm]</p>
+</dd>
+<dt>bc_ch: int</dt><dd><p>neuronal bodies channel</p>
+</dd>
+<dt>fb_ch: int</dt><dd><p>myelinated fibers channel</p>
+</dd>
+<dt>msk_bc: bool</dt><dd><p>if True, mask neuronal bodies within
+the optionally provided channel</p>
+</dd>
+<dt>hsv_cmap: bool</dt><dd><p>generate HSV colormap of 3D fiber orientations</p>
+</dd>
+<dt>exp_all: bool</dt><dd><p>export all images</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+<li><p><strong>tmp_dir</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – path to temporary folder</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p><strong>out_img</strong> –</p>
+<p>output image dictionary</p>
+<blockquote>
+<div><dl class="simple">
+<dt>vec: numpy.ndarray (axis order=(Z,Y,X,C), dtype=float32)</dt><dd><p>initialized fiber orientation 3D image</p>
+</dd>
+<dt>clr: numpy.ndarray (axis order=(Z,Y,X,C), dtype=uint8)</dt><dd><p>initialized orientation colormap image</p>
+</dd>
+<dt>fa: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>initialized fractional anisotropy image</p>
+</dd>
+<dt>frangi: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>initialized Frangi-enhanced image</p>
+</dd>
+<dt>iso: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>initialized fiber image (isotropic resolution)</p>
+</dd>
+<dt>fbr_msk: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>initialized fiber mask image</p>
+</dd>
+<dt>bc_msk: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>initialized soma mask image</p>
+</dd>
+</dl>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.frangi.mask_background">
+<span class="sig-prename descclassname"><span class="pre">foa3d.frangi.</span></span><span class="sig-name descname"><span class="pre">mask_background</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_slc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_img</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'yen'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ornt_keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('vec',</span> <span class="pre">'clr',</span> <span class="pre">'fa')</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.frangi.mask_background" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mask fiber orientation data arrays.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>out_slc</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – <p>slice output dictionary</p>
+<blockquote>
+<div><dl class="simple">
+<dt>vec: numpy.ndarray (axis order=(Z,Y,X,C), dtype=float)</dt><dd><p>3D fiber orientation field</p>
+</dd>
+<dt>clr: numpy.ndarray (axis order=(Z,Y,X,C), dtype=uint8)</dt><dd><p>orientation colormap</p>
+</dd>
+<dt>fa: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>fractional anisotropy</p>
+</dd>
+<dt>frangi: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>Frangi-enhanced image slice (fiber probability image)</p>
+</dd>
+<dt>iso: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>isotropic fiber image slice</p>
+</dd>
+<dt>ts_msk: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>tissue mask slice</p>
+</dd>
+<dt>fbr_msk: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>fiber mask slice</p>
+</dd>
+<dt>bc_msk: numpy.ndarray (axis order=(Z,Y,X), dtype=bool)</dt><dd><p>brain cell mask slice</p>
+</dd>
+<dt>rng: NumPy slice object</dt><dd><p>output range</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+<li><p><strong>ref_img</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em>) – reference image used for thresholding</p></li>
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – thresholding method (refer to skimage.filters)</p></li>
+<li><p><strong>invert</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – mask inversion flag</p></li>
+<li><p><strong>ornt_keys</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a>) – fiber orientation data keys</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>out_slc</strong> (<em>dict</em>)</p></li>
+<li><p><strong>bg</strong> (<em>numpy.ndarray (axis order=(Z,Y,X), dtype=bool)</em>) – background mask</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.frangi.reject_vesselness_background">
+<span class="sig-prename descclassname"><span class="pre">foa3d.frangi.</span></span><span class="sig-name descname"><span class="pre">reject_vesselness_background</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vesselness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigen2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigen3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.frangi.reject_vesselness_background" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reject the fiber background, exploiting the sign of the “secondary”
+eigenvalues λ2 and λ3.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vesselness</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>)</em>) – Frangi’s vesselness likelihood image</p></li>
+<li><p><strong>eigen2</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – middle Hessian eigenvalue</p></li>
+<li><p><strong>eigen3</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – highest Hessian eigenvalue</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>vesselness</strong> – masked Frangi’s vesselness likelihood image</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a> (axis order=(Z,Y,X), dtype=float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.frangi.sort_eigen">
+<span class="sig-prename descclassname"><span class="pre">foa3d.frangi.</span></span><span class="sig-name descname"><span class="pre">sort_eigen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eigval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigvec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.frangi.sort_eigen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort eigenvalue and related eigenvector arrays
+by absolute value along the given axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eigval</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>,</em><em>C</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – original eigenvalue array</p></li>
+<li><p><strong>eigvec</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em> (</em><em>axis order=</em><em>(</em><em>Z</em><em>,</em><em>Y</em><em>,</em><em>X</em><em>,</em><em>C</em><em>,</em><em>C</em><em>)</em><em>, </em><em>dtype=float</em><em>)</em>) – original eigenvector array</p></li>
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – sorted axis</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>srt_eigval</strong> (<em>numpy.ndarray (axis order=(Z,Y,X,C), dtype=float)</em>) – sorted eigenvalue array (ascending order)</p></li>
+<li><p><strong>srt_eigvec</strong> (<em>numpy.ndarray (axis order=(Z,Y,X,C,C), dtype=float)</em>) – sorted eigenvector array</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="foa3d.frangi.write_frangi_arrays">
+<span class="sig-prename descclassname"><span class="pre">foa3d.frangi.</span></span><span class="sig-name descname"><span class="pre">write_frangi_arrays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_slc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#foa3d.frangi.write_frangi_arrays" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill the output arrays of the Frangi filter stage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>out_img</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – <p>output image dictionary</p>
+<blockquote>
+<div><dl class="simple">
+<dt>vec: numpy.ndarray (axis order=(Z,Y,X,C), dtype=float32)</dt><dd><p>fiber orientation vector field</p>
+</dd>
+<dt>clr: numpy.ndarray (axis order=(Z,Y,X,C), dtype=uint8)</dt><dd><p>orientation colormap image</p>
+</dd>
+<dt>fa: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>fractional anisotropy image</p>
+</dd>
+<dt>frangi: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>Frangi-enhanced image (fiber probability image)</p>
+</dd>
+<dt>iso: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>isotropic fiber image</p>
+</dd>
+<dt>fbr_msk: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>fiber mask image</p>
+</dd>
+<dt>bc_msk: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>soma mask image</p>
+</dd>
+<dt>px_sz: numpy.ndarray (shape=(3,), dtype=float)</dt><dd><p>output pixel size [μm]</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+<li><p><strong>out_slc</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – <p>slice output dictionary</p>
+<blockquote>
+<div><dl class="simple">
+<dt>vec: numpy.ndarray (axis order=(Z,Y,X,C), dtype=float)</dt><dd><p>3D fiber orientation field</p>
+</dd>
+<dt>clr: numpy.ndarray (axis order=(Z,Y,X,C), dtype=uint8)</dt><dd><p>orientation colormap</p>
+</dd>
+<dt>fa: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>fractional anisotropy</p>
+</dd>
+<dt>frangi: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>Frangi-enhanced image slice (fiber probability image)</p>
+</dd>
+<dt>iso: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>isotropic fiber image slice</p>
+</dd>
+<dt>ts_msk: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>tissue mask slice</p>
+</dd>
+<dt>fbr_msk: numpy.ndarray (axis order=(Z,Y,X), dtype=uint8)</dt><dd><p>fiber mask slice</p>
+</dd>
+<dt>bc_msk: numpy.ndarray (axis order=(Z,Y,X), dtype=bool)</dt><dd><p>brain cell mask slice</p>
+</dd>
+</dl>
+</div></blockquote>
+</p></li>
+<li><p><strong>rng</strong> (<em>NumPy slice object</em>) – output range</p></li>
+<li><p><strong>z_out</strong> (<em>NumPy slice object</em>) – output z-range</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="Python module index" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="input.html" class="btn btn-neutral float-right" title="foa3d.input" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Michele Sorelli.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
